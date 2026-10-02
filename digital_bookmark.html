@@ -4,338 +4,579 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>הסימנייה הדיגיטלית - חני בלוי</title>
+    <meta name="description" content="כלי עזר לשיח בכיתה לחזרה לשגרה - חני בלוי, יועצת ומדריכה">
+    <!-- Share preview (WhatsApp / Facebook / Telegram) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:title" content="הסימנייה הדיגיטלית - חני בלוי">
+    <meta property="og:description" content="כלי עזר לשיח בכיתה לחזרה לשגרה">
+    <meta property="og:image" content="https://raw.githubusercontent.com/hannibloy/digital-bookmark-hani-blau./main/share-image.jpg">
+    <meta property="og:image:width" content="1222">
+    <meta property="og:image:height" content="604">
+    <meta property="og:image:alt" content="הסימנייה הדיגיטלית - חני בלוי, יועצת ומדריכה">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/hannibloy/digital-bookmark-hani-blau./main/share-image.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Assistant:wght@400;600&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Varela+Round&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Varela Round', 'Assistant', 'sans-serif'],
+                        signature: ['Amatic SC', 'cursive'],
+                        title: ['Amatic SC', 'cursive']
+                    },
+                    colors: {
+                        'wc-olive': '#7B8455',
+                        'wc-olive-light': '#D6E2C3',
+                        'wc-peach': '#E4A790',
+                        'wc-peach-light': '#F7D6CC',
+                        'wc-mustard': '#D8A03E',
+                        'wc-mustard-light': '#EFE2B9',
+                        'wc-burgundy': '#8A3B4C',
+                        'wc-burgundy-light': '#E7C8C8',
+                        'wc-teal': '#5C9590',
+                        'wc-teal-light': '#B3CFC3',
+                        'wc-slate': '#8C9CA1',
+                        'wc-slate-light': '#D0DADB',
+                        'wc-lavender': '#9D8BB0', 
+                        'wc-paper': '#FDFBF7',
+                        'text-main': '#3A332F',
+                    },
+                    boxShadow: {
+                        'soft': '0 15px 35px -5px rgba(0, 0, 0, 0.1), 0 10px 15px -5px rgba(0, 0, 0, 0.05)',
+                        'card': '0 6px 20px -3px rgba(0, 0, 0, 0.08), 0 4px 10px -4px rgba(0, 0, 0, 0.05)',
+                    },
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --olive: #7B8455;
-            --peach: #E4A790;
-            --mustard: #D8A03E;
-            --bordeaux: #8A3B4C;
-            --greyblue: #8C9CA1;
-            --turquoise: #5C9590;
-            --lavender: #9D8BB0;
-            --bg-color: #f4f1ea;
-        }
-
-        body {
-            background-color: #333;
-            font-family: 'Varela Round', 'Assistant', sans-serif;
-            display: flex;
-            justify-content: center;
-            padding: 40px 20px;
-            margin: 0;
-            color: #4a4a4a;
-        }
-
+        /* Decorative bookmark border */
         .bookmark-container {
-            background-color: var(--bg-color);
-            width: 100%;
-            max-width: 450px;
-            border-radius: 15px;
-            position: relative;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            padding: 50px 30px 40px 30px;
-            border: 2px dashed #d1c9b8;
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            border: 8px solid rgba(255,255,255,0.7);
+            outline: 2px dashed rgba(184, 106, 106, 0.3); /* Burgundy dashed outline */
+            outline-offset: -12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 0 20px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.03) 0%, transparent 5%, transparent 95%, rgba(0,0,0,0.03) 100%),
+                linear-gradient(to bottom, rgba(0,0,0,0.02) 0%, transparent 2%, transparent 98%, rgba(0,0,0,0.02) 100%);
         }
 
-        .ribbon {
+        /* Ribbon effect at the top */
+        .ribbon-top {
             position: absolute;
             top: -20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 40px;
-            background-color: var(--bordeaux);
-            border-radius: 5px 5px 0 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 70px;
+            height: 90px;
+            background-color: #8A3B4C;
+            border-radius: 4px 4px 0 0;
+            z-index: 20;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
-
-        .hole {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 15px;
-            height: 15px;
-            background-color: #333;
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .bh {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-family: 'Amatic SC', cursive;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #777;
-            margin: 0;
-        }
-
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            max-width: 160px;
-            mix-blend-mode: multiply;
-        }
-
-        h1.main-title {
-            font-family: 'Amatic SC', cursive;
-            font-size: 3.5rem;
-            text-align: center;
-            color: var(--bordeaux);
-            margin: 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            font-weight: 700;
-        }
-
-        p.subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-top: -5px;
-            margin-bottom: 30px;
-        }
-
-        .buttons-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 20px;
-            border-radius: 50px;
-            border: none;
-            color: white;
-            font-family: 'Amatic SC', cursive;
-            font-size: 2.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            position: relative;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            text-align: center;
-            line-height: 1.1;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.25);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-        }
-
-        .btn::before {
+        .ribbon-top::after {
             content: '';
             position: absolute;
-            top: -5px; right: -5px; bottom: -5px; left: -5px;
+            bottom: -20px;
+            left: 0;
+            border-left: 35px solid #8A3B4C;
+            border-right: 35px solid #8A3B4C;
+            border-bottom: 20px solid transparent;
+        }
+
+        /* Hole punch at top */
+        .hole-punch {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #e5e7eb; 
+            border-radius: 50%;
+            z-index: 30;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Enhanced Buttons */
+        .interactive-btn {
             border-radius: 50px;
-            border: 2px solid currentColor;
-            opacity: 0.3;
-            animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interactive-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.05) 100%);
+            border-radius: 50px;
+            pointer-events: none;
         }
 
+        .interactive-btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-olive:hover { box-shadow: 0 0 20px rgba(123, 132, 85, 0.8); transform: translateY(-3px); }
+        .btn-peach:hover { box-shadow: 0 0 20px rgba(228, 167, 144, 0.8); transform: translateY(-3px); }
+        .btn-mustard:hover { box-shadow: 0 0 20px rgba(216, 160, 62, 0.8); transform: translateY(-3px); }
+        .btn-burgundy:hover { box-shadow: 0 0 20px rgba(138, 59, 76, 0.8); transform: translateY(-3px); }
+        .btn-teal:hover { box-shadow: 0 0 20px rgba(92, 149, 144, 0.8); transform: translateY(-3px); }
+        .btn-slate:hover { box-shadow: 0 0 20px rgba(140, 156, 161, 0.8); transform: translateY(-3px); }
+        .btn-lavender:hover { box-shadow: 0 0 20px rgba(157, 139, 176, 0.8); transform: translateY(-3px); }
+
+        /* Click indicator */
+        .click-indicator {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
         @keyframes pulse-ring {
-            0% { transform: scale(0.95); opacity: 0.5; }
-            50% { transform: scale(1.05); opacity: 0.1; }
-            100% { transform: scale(0.95); opacity: 0.5; }
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
         }
 
-        .btn-olive { background-color: var(--olive); color: white; }
-        .btn-peach { background-color: var(--peach); color: white; }
-        .btn-mustard { background-color: var(--mustard); color: white; }
-        .btn-bordeaux { background-color: var(--bordeaux); color: white; }
-        .btn-turquoise { background-color: var(--turquoise); color: white; }
-        .btn-greyblue { background-color: var(--greyblue); color: white; }
-        .btn-lavender { background-color: var(--lavender); color: white; }
+        /* Ripple effect on touch/hover */
+        .ripple-effect {
+            background-position: center;
+            transition: background 0.8s;
+        }
+        .btn-olive.ripple-effect:hover { background: #7B8455 radial-gradient(circle, transparent 1%, #7B8455 1%) center/15000%; }
+        .btn-olive.ripple-effect:active { background-color: #D6E2C3; background-size: 100%; transition: background 0s; }
+        
+        .btn-peach.ripple-effect:hover { background: #E4A790 radial-gradient(circle, transparent 1%, #E4A790 1%) center/15000%; }
+        .btn-peach.ripple-effect:active { background-color: #F7D6CC; background-size: 100%; transition: background 0s; }
+
+        .btn-mustard.ripple-effect:hover { background: #D8A03E radial-gradient(circle, transparent 1%, #D8A03E 1%) center/15000%; }
+        .btn-mustard.ripple-effect:active { background-color: #EFE2B9; background-size: 100%; transition: background 0s; }
+
+        .btn-burgundy.ripple-effect:hover { background: #8A3B4C radial-gradient(circle, transparent 1%, #8A3B4C 1%) center/15000%; }
+        .btn-burgundy.ripple-effect:active { background-color: #E7C8C8; background-size: 100%; transition: background 0s; }
+        
+        .btn-teal.ripple-effect:hover { background: #5C9590 radial-gradient(circle, transparent 1%, #5C9590 1%) center/15000%; }
+        .btn-teal.ripple-effect:active { background-color: #B3CFC3; background-size: 100%; transition: background 0s; }
+
+        .btn-slate.ripple-effect:hover { background: #8C9CA1 radial-gradient(circle, transparent 1%, #8C9CA1 1%) center/15000%; }
+        .btn-slate.ripple-effect:active { background-color: #D0DADB; background-size: 100%; transition: background 0s; }
+        
+        .btn-lavender.ripple-effect:hover { background: #9D8BB0 radial-gradient(circle, transparent 1%, #9D8BB0 1%) center/15000%; }
+        .btn-lavender.ripple-effect:active { background-color: #E6E0EB; background-size: 100%; transition: background 0s; }
 
         /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
         }
-
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
         .modal-content {
+            transform: scale(0.95) translateY(10px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        
+        /* Custom Checkboxes */
+        input[type="checkbox"] {
+            appearance: none;
             background-color: #fff;
-            padding: 30px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 400px;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #888;
-            background: none;
-            border: none;
-        }
-
-        .modal h2 {
-            font-family: 'Amatic SC', cursive;
-            font-size: 2.8rem;
-            margin-top: 0;
-            text-align: center;
-        }
-
-        .checklist {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .checklist li {
-            margin-bottom: 15px;
-            padding-right: 35px;
-            position: relative;
-            line-height: 1.4;
-            font-size: 1.1rem;
-        }
-
-        .checklist li::before {
-            content: '✓';
-            position: absolute;
-            right: 0;
-            top: 0;
-            color: var(--olive);
-            font-weight: bold;
-            font-size: 1.2rem;
-            background: #f0ebd8;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-top: 0.25rem;
+            width: 1.5em;
+            height: 1.5em;
+            border: 2px solid #ddd;
             border-radius: 50%;
+            display: inline-grid;
+            place-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        .signature-box {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #555;
+        input[type="checkbox"]::before {
+            content: "";
+            width: 0.75em;
+            height: 0.75em;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            transform: scale(0);
+            transform-origin: bottom left;
+            transition: 120ms transform ease-in-out;
+            background-color: white;
         }
-
-        .signature-name {
-            font-family: 'Amatic SC', cursive;
-            font-size: 3rem;
-            color: var(--bordeaux);
-            margin-top: 10px;
-            font-weight: 700;
+        input[type="checkbox"]:checked {
+            border-color: transparent;
         }
-
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+        
+        .cb-olive:checked { background-color: #7B8455; }
+        .cb-peach:checked { background-color: #E4A790; }
+        .cb-mustard:checked { background-color: #D8A03E; }
+        .cb-burgundy:checked { background-color: #8A3B4C; }
     </style>
 </head>
-<body>
+<body class="bg-gray-200 text-text-main font-sans min-h-screen flex justify-center py-10 px-4 selection:bg-wc-peach">
 
-    <div class="bookmark-container">
-        <div class="ribbon"></div>
-        <div class="hole"></div>
-        <p class="bh">ב"ה</p>
+    <main class="w-full max-w-md bg-wc-paper min-h-[90vh] relative flex flex-col bookmark-container mt-4 mb-4">
         
-        <div class="logo-container">
-            <img src="https://i.postimg.cc/pVYzGDYb/lwgw-hny-blwy-sgnwn-rk.png" alt="לוגו חני בלוי" class="logo">
-        </div>
+        <div class="absolute top-4 right-6 text-[0.8rem] text-text-main/60 font-sans z-50 font-bold">ב"ה</div>
 
-        <h1 class="main-title">הסימנייה הדיגיטלית</h1>
-        <p class="subtitle">כלי עזר לשיח בכיתה לחזרה לשגרה</p>
+        <div class="ribbon-top"></div>
+        <div class="hole-punch"></div>
 
-        <div class="buttons-grid">
-            <button class="btn btn-olive" onclick="openModal('modal-hestaglut')">הסתגלות וחיבור</button>
-            <button class="btn btn-peach" onclick="openModal('modal-shituf')">שיתוף בחוויות</button>
-            <button class="btn btn-mustard" onclick="openModal('modal-dubai')">הטיסה מדובאי</button>
-            <a href="https://www.canva.com/design/DAHWzGgOhm0/NiQTuelcFPma12CQiFxiiQ/view" target="_blank" class="btn btn-bordeaux">שיח בכיתות עם החזרה - הנחיות שפ"י</a>
-            <a href="https://www.canva.com/design/DAFPeylIASY/G6-shnpaJ-254pouum7WIQ/view" target="_blank" class="btn btn-turquoise">אחרי החגים כבר כאן - אוסף פעילויות</a>
-            <a href="https://www.canva.com/design/DAGUgIDE2po/6zMqMLqbPTSPucWvu0o17w/view?utm_content=DAGUgIDE2po&utm_campaign=designshare&utm_medium=link&utm_source=viewer" target="_blank" class="btn btn-lavender">אחרי החגים - ליאת ונגובסקי</a>
-            <a href="https://drive.google.com/file/d/1yKCGkBdLcX8TybOILym3s0DTuycZ_fh3/view?usp=sharing" target="_blank" class="btn btn-greyblue">לעיון במסמך המקור</a>
-        </div>
+        <header class="pt-24 pb-4 px-6 text-center relative z-10">
+            <div class="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-wc-peach-light/40 to-transparent pointer-events-none rounded-t-lg"></div>
+            
+            <img src="https://i.postimg.cc/pVYzGDYb/lwgw-hny-blwy-sgnwn-rk.png" alt="חני בלוי - יועצת ומדריכה" class="w-36 md:w-44 mx-auto drop-shadow-sm mb-4 relative z-10 mix-blend-multiply object-contain" onerror="this.onerror=null; this.src='https://placehold.co/400x200/ECA994/B86A6A?text=חני+בלוי\nיועצת+ומדריכה';">
+            
+            <h1 class="text-5xl md:text-6xl font-title text-wc-burgundy font-bold drop-shadow-sm" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">הסימנייה הדיגיטלית</h1>
+            <h2 class="text-lg text-text-main/80 font-sans mt-1">כלי עזר לשיח בכיתה לחזרה לשגרה</h2>
+            
+            <div class="flex justify-center items-center gap-2 mt-4">
+                <div class="w-12 h-0.5 bg-wc-olive rounded-full"></div>
+                <div class="w-2 h-2 bg-wc-mustard rounded-full"></div>
+                <div class="w-12 h-0.5 bg-wc-peach rounded-full"></div>
+            </div>
+        </header>
 
-        <div class="signature-box">
-            "בכל התלבטות או מחשבה סביב עיבוד חוויות החזרה לשגרה של התלמידים בצל אירועי השעה, זיכרו שאתם לא לבד. אני כאן תמיד בשבילכם – להקשיב, לחשוב יחד ולתמוך מכל הלב. הדלת שלי תמיד פתוחה."
-            <div class="signature-name">שלכם,<br>חני</div>
+        <section class="flex-grow px-6 py-2 space-y-6 relative z-10">
+            
+            <!-- Button 1 -->
+            <button onclick="openModal('modal-1')" class="w-full bg-wc-olive text-white p-4 interactive-btn btn-olive ripple-effect shadow-card flex items-center gap-4 text-right group border-2 border-white">
+                <div class="bg-white/20 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 shadow-inner click-indicator relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22v-9"></path>
+                        <path d="M12 13C8.42 13 5.5 10.08 5.5 6.5S8.42 0 12 0c3.58 0 6.5 2.92 6.5 6.5S15.58 13 12 13z"></path>
+                        <path d="M5.5 6.5C3.57 6.5 2 8.07 2 10s1.57 3.5 3.5 3.5H12"></path>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h2 class="text-4xl font-title tracking-wide font-bold drop-shadow-md" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">הסתגלות וחיבור</h2>
+                </div>
+                <div class="opacity-70 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all bg-white/20 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </div>
+            </button>
+
+            <!-- Button 2 -->
+            <button onclick="openModal('modal-2')" class="w-full bg-wc-peach text-white p-4 interactive-btn btn-peach ripple-effect shadow-card flex items-center gap-4 text-right group border-2 border-white">
+                <div class="bg-white/20 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 shadow-inner click-indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h2 class="text-4xl font-title tracking-wide font-bold drop-shadow-md" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">שיתוף בחוויות</h2>
+                </div>
+                <div class="opacity-70 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all bg-white/20 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </div>
+            </button>
+
+            <!-- Button 3 -->
+            <button onclick="openModal('modal-3')" class="w-full bg-wc-mustard text-white p-4 interactive-btn btn-mustard ripple-effect shadow-card flex items-center gap-4 text-right group border-2 border-white">
+                <div class="bg-white/20 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 shadow-inner click-indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h2 class="text-4xl font-title tracking-wide font-bold drop-shadow-md" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">הטיסה מדובאי</h2>
+                </div>
+                <div class="opacity-70 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all bg-white/20 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </div>
+            </button>
+
+            <!-- Button 4 -->
+            <button onclick="openModal('modal-4')" class="w-full bg-wc-burgundy text-white p-4 interactive-btn btn-burgundy ripple-effect shadow-card flex items-center gap-4 text-right group border-2 border-white">
+                <div class="bg-white/20 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 shadow-inner click-indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 22h4"></path>
+                        <path d="M12 22V10"></path>
+                        <path d="M12 10c0-2.5-3-4-3-6 0-1.5 1.5-2 3-2s3 .5 3 2c0 2-3 3.5-3 6z"></path>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <h2 class="text-4xl font-title tracking-wide font-bold drop-shadow-md" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">ציון ה-7 באוקטובר</h2>
+                </div>
+                <div class="opacity-70 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all bg-white/20 rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </div>
+            </button>
+            
+            <!-- Button 5 (Link) -->
+            <a href="https://www.canva.com/design/DAFPeylIASY/G6-shnpaJ-254pouum7WIQ/view" target="_blank" rel="noopener" class="w-full bg-wc-teal text-white p-4 interactive-btn btn-teal ripple-effect shadow-card flex items-center gap-4 text-right group border-2 border-white block">
+                <div class="flex items-center w-full gap-4">
+                    <div class="bg-white/20 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 shadow-inner click-indicator">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <div class="flex-grow">
+                        <h2 class="text-4xl font-title tracking-wide font-bold drop-shadow-md" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">אחרי החגים כבר כאן - אוסף פעילויות</h2>
+                    </div>
+                    <div class="opacity-70 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all bg-white/20 rounded-full p-2 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Button 6 (Link) -->
+            <a href="https://drive.google.com/file/d/1yKCGkBdLcX8TybOILym3s0DTuycZ_fh3/view?usp=sharing" target="_blank" rel="noopener" class="w-full bg-wc-slate text-white p-4 interactive-btn btn-slate ripple-effect shadow-card flex items-center gap-4 text-right group border-2 border-white block">
+                <div class="flex items-center w-full gap-4">
+                    <div class="bg-white/20 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 shadow-inner click-indicator">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="flex-grow">
+                        <h2 class="text-4xl font-title tracking-wide font-bold drop-shadow-md" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">הנחיות שפ"י - שיח בכיתות עם החזרה</h2>
+                    </div>
+                    <div class="opacity-70 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all bg-white/20 rounded-full p-2 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Button 7 NEW (Link) -->
+            <a href="https://www.canva.com/design/DAGUgIDE2po/6zMqMLqbPTSPucWvu0o17w/view?utm_content=DAGUgIDE2po&utm_campaign=designshare&utm_medium=link&utm_source=viewer" target="_blank" rel="noopener" class="w-full bg-wc-lavender text-white p-4 interactive-btn btn-lavender ripple-effect shadow-card flex items-center gap-4 text-right group border-2 border-white mb-4 block">
+                <div class="flex items-center w-full gap-4">
+                    <div class="bg-white/20 p-3 rounded-full group-hover:scale-110 transition-transform duration-300 shadow-inner click-indicator">
+                        <!-- Star Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <div class="flex-grow">
+                        <h2 class="text-4xl font-title tracking-wide font-bold drop-shadow-md" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">אחרי החגים - ליאת ונגרובסקי</h2>
+                    </div>
+                    <div class="opacity-70 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all bg-white/20 rounded-full p-2 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </div>
+                </div>
+            </a>
+
+        </section>
+
+        <footer class="mt-auto px-8 pb-10 pt-4 text-center relative z-10 bg-gradient-to-t from-wc-paper via-wc-paper to-transparent">
+            <p class="text-[1.1rem] leading-relaxed text-text-main/90 mb-4 bg-white/50 p-4 rounded-2xl shadow-sm border border-gray-100">
+                "בכל התלבטות או מחשבה סביב עיבוד חוויות החזרה לשגרה של התלמידים בצל אירועי השעה, זיכרו שאתם לא לבד. אני כאן תמיד בשבילכם – להקשיב, לחשוב יחד ולתמוך מכל הלב. הדלת שלי תמיד פתוחה."
+            </p>
+            <p class="text-4xl font-signature text-wc-burgundy mt-4 font-bold">
+                שלכם,<br>חני בלוי
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- MODALS SECTION -->
+
+    <!-- Modal 1: Olive -->
+    <div id="modal-1" class="modal-overlay fixed inset-0 bg-text-main/60 backdrop-blur-md z-50 flex items-center justify-center p-4" onclick="closeModalOnOutsideClick(event, 'modal-1')">
+        <div class="modal-content bg-wc-paper w-full max-w-sm rounded-[30px] shadow-2xl overflow-hidden relative border-4 border-wc-olive-light">
+            <div class="bg-wc-olive px-6 py-6 flex items-center justify-between text-white">
+                <h3 class="text-4xl font-title font-bold flex items-center gap-3 drop-shadow-md">
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-9"></path><path d="M12 13C8.42 13 5.5 10.08 5.5 6.5S8.42 0 12 0c3.58 0 6.5 2.92 6.5 6.5S15.58 13 12 13z"></path><path d="M5.5 6.5C3.57 6.5 2 8.07 2 10s1.57 3.5 3.5 3.5H12"></path></svg>
+                    </div>
+                    הסתגלות וחיבור
+                </h3>
+                <button onclick="closeModal('modal-1')" class="text-white hover:text-wc-olive-light bg-black/10 hover:bg-black/20 rounded-full p-2 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="p-6 bg-gradient-to-b from-wc-olive-light/10 to-transparent">
+                <ul class="space-y-5">
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m1-1" class="cb-olive shadow-sm">
+                        <label for="m1-1" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-olive transition-colors">לזכור שתלמידים רבים עדיין נמצאים בתהליכי הסתגלות והתמקמות.</label>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m1-2" class="cb-olive shadow-sm">
+                        <label for="m1-2" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-olive transition-colors">להקדיש זמן ייעודי לפעילויות היכרות וביסוס קשרים חברתיים.</label>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m1-3" class="cb-olive shadow-sm">
+                        <label for="m1-3" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-olive transition-colors">לתמוך באופן פעיל בתהליך ההסתגלות למען חיזוק האקלים הכיתתי.</label>
+                    </li>
+                </ul>
+
+                <div class="mt-8 pt-6 border-t border-wc-olive/20 text-center">
+                    <a href="https://shefi.education.gov.il/publication/year-dates/before-school-start/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 bg-wc-olive hover:bg-[#68714a] text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 w-full border-2 border-white/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        מאגרי כ"ח לפתיחת שנת הלימודים
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Modals -->
-    <div id="modal-hestaglut" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('modal-hestaglut')">✖</button>
-            <h2 style="color: var(--olive);">הסתגלות וחיבור</h2>
-            <ul class="checklist">
-                <li>לזכור שתלמידים רבים עדיין נמצאים בתהליכי הסתגלות והתמקמות.</li>
-                <li>להקדיש זמן ייעודי לפעילויות היכרות וביסוס קשרים חברתיים.</li>
-                <li>לתמוך באופן פעיל בתהליך ההסתגלות למען חיזוק האקלים הכיתתי.</li>
-            </ul>
+    <!-- Modal 2: Peach -->
+    <div id="modal-2" class="modal-overlay fixed inset-0 bg-text-main/60 backdrop-blur-md z-50 flex items-center justify-center p-4" onclick="closeModalOnOutsideClick(event, 'modal-2')">
+        <div class="modal-content bg-wc-paper w-full max-w-sm rounded-[30px] shadow-2xl overflow-hidden relative border-4 border-wc-peach-light">
+            <div class="bg-wc-peach px-6 py-6 flex items-center justify-between text-white">
+                <h3 class="text-4xl font-title font-bold flex items-center gap-3 drop-shadow-md">
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </div>
+                    שיתוף בחוויות
+                </h3>
+                <button onclick="closeModal('modal-2')" class="text-white hover:text-wc-peach-light bg-black/10 hover:bg-black/20 rounded-full p-2 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="p-6 bg-gradient-to-b from-wc-peach-light/10 to-transparent">
+                <ul class="space-y-5">
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m2-1" class="cb-peach shadow-sm">
+                        <label for="m2-1" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-peach transition-colors">לשאול שאלות פתוחות וכלליות המזמינות שיתוף של חוויות משמחות ומאתגרות כאחד.</label>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m2-2" class="cb-peach shadow-sm">
+                        <label for="m2-2" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-peach transition-colors">לתת תוקף לתחושות התלמידים, ולהימנע מהעמקה בחוויות מורכבות או אישיות מול כל הכיתה.</label>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m2-3" class="cb-peach shadow-sm">
+                        <label for="m2-3" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-peach transition-colors">להמשיך בשיח פרטני בהמשך היום עם תלמידים ששיתפו באתגר כדי להקשיב מקרוב ולעמוד לצידם.</label>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m2-4" class="cb-peach shadow-sm">
+                        <label for="m2-4" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-peach transition-colors">לגלות רגישות ולשים לב גם לתלמידים שבחרו שלא לשתף.</label>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div id="modal-shituf" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('modal-shituf')">✖</button>
-            <h2 style="color: var(--peach);">שיתוף בחוויות</h2>
-            <ul class="checklist">
-                <li>לשאול שאלות פתוחות וכלליות המזמינות שיתוף של חוויות משמחות ומאתגרות כאחד.</li>
-                <li>לתת תוקף לתחושות התלמידים, ולהימנע מהעמקה בחוויות מורכבות או אישיות מול כל הכיתה.</li>
-                <li>להמשיך בשיח פרטני בהמשך היום עם תלמידים ששיתפו באתגר כדי להקשיב מקרוב ולעמוד לצידם.</li>
-                <li>לגלות רגישות ולשים לב גם לתלמידים שבחרו שלא לשתף.</li>
-            </ul>
+    <!-- Modal 3: Mustard -->
+    <div id="modal-3" class="modal-overlay fixed inset-0 bg-text-main/60 backdrop-blur-md z-50 flex items-center justify-center p-4" onclick="closeModalOnOutsideClick(event, 'modal-3')">
+        <div class="modal-content bg-wc-paper w-full max-w-sm rounded-[30px] shadow-2xl overflow-hidden relative border-4 border-wc-mustard-light">
+            <div class="bg-wc-mustard px-6 py-6 flex items-center justify-between text-white">
+                <h3 class="text-4xl font-title font-bold flex items-center gap-3 drop-shadow-md">
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </div>
+                    הטיסה מדובאי
+                </h3>
+                <button onclick="closeModal('modal-3')" class="text-white hover:text-wc-mustard-light bg-black/10 hover:bg-black/20 rounded-full p-2 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="p-6 bg-gradient-to-b from-wc-mustard-light/10 to-transparent">
+                <div class="mb-5 text-sm font-bold text-wc-mustard bg-wc-mustard-light/50 px-4 py-2 rounded-xl inline-block border border-wc-mustard/30">
+                    * להפעלה רק במידה והנושא עולה מהתלמידים
+                </div>
+                <ul class="space-y-5">
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m3-1" class="cb-mustard shadow-sm">
+                        <label for="m3-1" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-mustard transition-colors">להתייחס לאירוע באופן תואם גיל, אך ורק אם התלמידים העלו אותו.</label>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m3-2" class="cb-mustard shadow-sm">
+                        <label for="m3-2" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-mustard transition-colors">להימנע מלהוסיף מידע שלא עלה מהתלמידים ומתיאורים שעלולים לזרוע חרדה.</label>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m3-3" class="cb-mustard shadow-sm">
+                        <label for="m3-3" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-mustard transition-colors">להדגיש כי זהו אירוע חריג, שכוחות הביטחון פועלים, ושהנוסעים שגילו תושייה חזרו בשלום.</label>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m3-4" class="cb-mustard shadow-sm">
+                        <label for="m3-4" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-mustard transition-colors">
+                            <strong>(במידה ויש תלמיד שחווה את האירוע מקרוב)</strong>: לקיים שיח אישי עם התלמיד והוריו, ללוותם לאורך זמן, להציע פנייה לשירות הפסיכולוגי, ולתכנן יחד את אופן השיתוף בכיתה תוך רגישות למעגלי פגיעה נוספים.
+                        </label>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div id="modal-dubai" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('modal-dubai')">✖</button>
-            <h2 style="color: var(--mustard);">הטיסה מדובאי</h2>
-            <ul class="checklist">
-                <li>להתייחס לאירוע באופן תואם גיל, אך ורק אם התלמידים העלו אותו.</li>
-                <li>להימנע מלהוסיף מידע שלא עלה מהתלמידים ומתיאורים שעלולים לזרוע חרדה.</li>
-                <li>להדגיש כי זהו אירוע חריג, שכוחות הביטחון פועלים, ושהנוסעים שגילו תושייה חזרו בשלום.</li>
-                <li>(במידה ויש תלמיד שחווה את האירוע מקרוב): לקיים שיח אישי עם התלמיד והוריו, ללוותם לאורך זמן, להציע פנייה לשירות הפסיכולוגי, ולתכנן יחד את אופן השיתוף בכיתה תוך רגישות למעגלי פגיעה נוספים.</li>
-            </ul>
+    <!-- Modal 4: Burgundy -->
+    <div id="modal-4" class="modal-overlay fixed inset-0 bg-text-main/60 backdrop-blur-md z-50 flex items-center justify-center p-4" onclick="closeModalOnOutsideClick(event, 'modal-4')">
+        <div class="modal-content bg-wc-paper w-full max-w-sm rounded-[30px] shadow-2xl overflow-hidden relative border-4 border-wc-burgundy-light">
+            <div class="bg-wc-burgundy px-6 py-6 flex items-center justify-between text-white">
+                <h3 class="text-4xl font-title font-bold flex items-center gap-3 drop-shadow-md">
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22h4"></path><path d="M12 22V10"></path><path d="M12 10c0-2.5-3-4-3-6 0-1.5 1.5-2 3-2s3 .5 3 2c0 2-3 3.5-3 6z"></path></svg>
+                    </div>
+                    ציון ה-7 באוקטובר
+                </h3>
+                <button onclick="closeModal('modal-4')" class="text-white hover:text-wc-burgundy-light bg-black/10 hover:bg-black/20 rounded-full p-2 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="p-6 bg-gradient-to-b from-wc-burgundy-light/10 to-transparent">
+                <ul class="space-y-5">
+                    <li class="flex items-start gap-4">
+                        <input type="checkbox" id="m4-1" class="cb-burgundy shadow-sm">
+                        <label for="m4-1" class="text-text-main text-[1.1rem] leading-snug cursor-pointer select-none pt-1 hover:text-wc-burgundy transition-colors">עם שובנו מחופשת החג נציין את יום הזיכרון לאירועי השבעה באוקטובר 2023 ומלחמת התקומה.</label>
+                    </li>
+                </ul>
+                
+                <div class="mt-8 pt-6 border-t border-wc-burgundy/20 text-center space-y-3">
+                    <a href="https://www.canva.com/design/DAHWzGgOhm0/NiQTuelcFPma12CQiFxiiQ/view" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 bg-wc-burgundy hover:bg-[#6f2f3d] text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 w-full border-2 border-white/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        מאגר כלים ופעילויות לציון 7 באוקטובר
+                    </a>
+                    <a href="https://shefi.education.gov.il/publication/year-dates/7-oct-events/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 bg-white hover:bg-wc-burgundy-light/40 text-wc-burgundy font-bold py-4 px-6 rounded-2xl transition-all shadow-md hover:shadow-lg hover:-translate-y-1 w-full border-2 border-wc-burgundy/30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                        מסמכי הנחיה וכלי שיח - שפ"י נט
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
+        let currentOpenModal = null;
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                currentOpenModal = modalId;
+                document.body.style.overflow = 'hidden';
+            }
         }
 
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                currentOpenModal = null;
+                document.body.style.overflow = '';
+            }
         }
 
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                event.target.style.display = 'none';
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && currentOpenModal) {
+                closeModal(currentOpenModal);
+            }
+        });
+
+        function closeModalOnOutsideClick(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
             }
         }
     </script>
